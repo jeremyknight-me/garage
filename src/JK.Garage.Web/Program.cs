@@ -1,11 +1,11 @@
-using JK.Garage.Web.Data;
+using JK.Garage.Web.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddSingleton<WeatherForecastService>();
+builder.Services.AddDependencies();
 
 var app = builder.Build();
 
@@ -26,4 +26,7 @@ app.UseRouting();
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");
 
+
+app.ApplyMigrations();
 app.Run();
+
