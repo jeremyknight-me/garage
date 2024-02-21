@@ -1,3 +1,3 @@
 ﻿namespace Garage.Core;
 
-public readonly record struct VehicleId(Guid Id);
+public readonly record struct VehicleId(Guid Value);
