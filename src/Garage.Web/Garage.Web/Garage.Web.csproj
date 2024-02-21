@@ -10,8 +10,8 @@
         <EnableSdkContainerDebugging>True</EnableSdkContainerDebugging>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
         <DockerfileContext>..\..</DockerfileContext>
-        <ContainerRepository>knight0323/garage</ContainerRepository>
         <DockerComposeProjectPath>..\..\docker-compose.dcproj</DockerComposeProjectPath>
+        <ContainerRepository>knight0323/garage</ContainerRepository>
     </PropertyGroup>
 
     <ItemGroup>
