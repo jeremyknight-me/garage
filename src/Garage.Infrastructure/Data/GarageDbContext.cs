@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Garage.Infrastructure.Data;
 
-public sealed class GarageContext(DbContextOptions<GarageContext> options) : DbContext(options)
+public sealed class GarageDbContext(DbContextOptions<GarageDbContext> options) : DbContext(options)
 {
     public DbSet<Core.Garage> Garages { get; set; }
     public DbSet<Location> Locations { get; set; }

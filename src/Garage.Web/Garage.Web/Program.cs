@@ -16,6 +16,7 @@ public class Program
             .AddInteractiveWebAssemblyComponents();
 
         services.AddGarageIdentity(configuation);
+        services.AddGarageData(configuation);
 
         var app = builder.Build();
 

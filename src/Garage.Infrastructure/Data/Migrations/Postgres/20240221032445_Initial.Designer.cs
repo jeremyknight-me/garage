@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Garage.Infrastructure.Data.Migrations.Postgres
 {
-    [DbContext(typeof(GarageContext))]
+    [DbContext(typeof(GarageDbContext))]
     [Migration("20240221032445_Initial")]
     partial class Initial
     {
