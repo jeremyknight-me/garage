@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Garage.Web.Data.Migrations.Postgres
 {
-    [DbContext(typeof(ApplicationDbContext))]
+    [DbContext(typeof(GarageIdentityDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

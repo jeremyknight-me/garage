@@ -22,7 +22,7 @@ internal static class MigrationExtensions
     private static void ApplyIdentityMigration(this WebApplication app)
     {
         using var scope = app.Services.CreateScope();
-        var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+        var context = scope.ServiceProvider.GetRequiredService<GarageIdentityDbContext>();
         context.Database.Migrate();
     }
 }

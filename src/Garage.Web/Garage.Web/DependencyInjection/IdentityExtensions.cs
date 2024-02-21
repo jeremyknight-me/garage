@@ -26,14 +26,14 @@ internal static class IdentityExtensions
         var connectionString = configuration.GetConnectionString(Constants.ConnectionStrings.Garage_Identity)
             ?? throw new InvalidOperationException($"Connection string '{Constants.ConnectionStrings.Garage_Identity}' not found.");
 
-        services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(connectionString));
+        services.AddDbContext<GarageIdentityDbContext>(options => options.UseNpgsql(connectionString));
         services.AddDatabaseDeveloperPageExceptionFilter();
 
         services.AddIdentityCore<ApplicationUser>(options =>
             {
                 options.SignIn.RequireConfirmedAccount = false;
             })
-            .AddEntityFrameworkStores<ApplicationDbContext>()
+            .AddEntityFrameworkStores<GarageIdentityDbContext>()
             .AddSignInManager()
             .AddDefaultTokenProviders();
 
