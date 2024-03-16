@@ -11,6 +11,4 @@ public abstract class EntityBase
 {
     public DateTimeOffset DateCreated { get; private set; } = DateTimeOffset.UtcNow;
     public DateTimeOffset DateModified { get; private set; } = DateTimeOffset.UtcNow;
-
-    public void SetDateModified() => this.DateModified = DateTimeOffset.UtcNow;
 }

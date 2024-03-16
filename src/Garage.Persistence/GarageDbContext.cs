@@ -1,5 +1,6 @@
 ﻿using Garage.Persistence.Config;
 using Garage.Persistence.Converters;
+using Garage.Persistence.Interceptors;
 
 namespace Garage.Persistence;
 
@@ -12,18 +13,6 @@ public sealed class GarageDbContext(DbContextOptions<GarageDbContext> options) :
     public DbSet<Maintenance> Maintenances { get; set; }
     public DbSet<Vehicle> Vehicles { get; set; }
 
-    public override int SaveChanges()
-    {
-        this.UpdateEntityBaseValues();
-        return base.SaveChanges();
-    }
-
-    public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
-    {
-        this.UpdateEntityBaseValues();
-        return base.SaveChangesAsync(cancellationToken);
-    }
-
     protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
     {
         configurationBuilder.Properties<string>().AreUnicode(unicode: true);
@@ -32,6 +21,12 @@ public sealed class GarageDbContext(DbContextOptions<GarageDbContext> options) :
         configurationBuilder.Properties<LocationId>().HaveConversion<LocationIdValueConverter>();
         configurationBuilder.Properties<MaintenanceId>().HaveConversion<MaintenanceIdValueConverter>();
         configurationBuilder.Properties<VehicleId>().HaveConversion<VehicleIdValueConverter>();
+    }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.AddInterceptors(new UpdateEntityBaseInterceptor());
+        base.OnConfiguring(optionsBuilder);
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -48,17 +43,5 @@ public sealed class GarageDbContext(DbContextOptions<GarageDbContext> options) :
         modelBuilder.ApplyConfigurationsFromAssembly(assembly, x =>
             x.Namespace is not null
             && x.Namespace.StartsWith(type.Namespace));
-    }
-
-    private void UpdateEntityBaseValues()
-    {
-        foreach (var change in this.ChangeTracker.Entries())
-        {
-            if (change.State == EntityState.Modified
-                && change.Entity is EntityBase entityBase)
-            {
-                entityBase.SetDateModified();
-            }
-        }
     }
 }
