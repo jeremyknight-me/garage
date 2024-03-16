@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Garage.Infrastructure.Data.Migrations.Postgres
+namespace Garage.Persistence.Postgres.Migrations
 {
     /// <inheritdoc />
     public partial class Initial : Migration
@@ -11,8 +11,12 @@ namespace Garage.Infrastructure.Data.Migrations.Postgres
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.EnsureSchema(
+                name: "app");
+
             migrationBuilder.CreateTable(
                 name: "Garage",
+                schema: "app",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -27,6 +31,7 @@ namespace Garage.Infrastructure.Data.Migrations.Postgres
 
             migrationBuilder.CreateTable(
                 name: "Location",
+                schema: "app",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -41,6 +46,7 @@ namespace Garage.Infrastructure.Data.Migrations.Postgres
 
             migrationBuilder.CreateTable(
                 name: "Vehicle",
+                schema: "app",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -57,6 +63,7 @@ namespace Garage.Infrastructure.Data.Migrations.Postgres
 
             migrationBuilder.CreateTable(
                 name: "GarageVehicle",
+                schema: "app",
                 columns: table => new
                 {
                     GaragesId = table.Column<Guid>(type: "uuid", nullable: false),
@@ -68,12 +75,14 @@ namespace Garage.Infrastructure.Data.Migrations.Postgres
                     table.ForeignKey(
                         name: "FK_GarageVehicle_Garage_GaragesId",
                         column: x => x.GaragesId,
+                        principalSchema: "app",
                         principalTable: "Garage",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_GarageVehicle_Vehicle_VehiclesId",
                         column: x => x.VehiclesId,
+                        principalSchema: "app",
                         principalTable: "Vehicle",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -81,6 +90,7 @@ namespace Garage.Infrastructure.Data.Migrations.Postgres
 
             migrationBuilder.CreateTable(
                 name: "Maintenance",
+                schema: "app",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -99,12 +109,14 @@ namespace Garage.Infrastructure.Data.Migrations.Postgres
                     table.ForeignKey(
                         name: "FK_Maintenance_Location_LocationId",
                         column: x => x.LocationId,
+                        principalSchema: "app",
                         principalTable: "Location",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Maintenance_Vehicle_VehicleId",
                         column: x => x.VehicleId,
+                        principalSchema: "app",
                         principalTable: "Vehicle",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -112,16 +124,19 @@ namespace Garage.Infrastructure.Data.Migrations.Postgres
 
             migrationBuilder.CreateIndex(
                 name: "IX_GarageVehicle_VehiclesId",
+                schema: "app",
                 table: "GarageVehicle",
                 column: "VehiclesId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Maintenance_LocationId",
+                schema: "app",
                 table: "Maintenance",
                 column: "LocationId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Maintenance_VehicleId",
+                schema: "app",
                 table: "Maintenance",
                 column: "VehicleId");
         }
@@ -130,19 +145,24 @@ namespace Garage.Infrastructure.Data.Migrations.Postgres
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "GarageVehicle");
+                name: "GarageVehicle",
+                schema: "app");
 
             migrationBuilder.DropTable(
-                name: "Maintenance");
+                name: "Maintenance",
+                schema: "app");
 
             migrationBuilder.DropTable(
-                name: "Garage");
+                name: "Garage",
+                schema: "app");
 
             migrationBuilder.DropTable(
-                name: "Location");
+                name: "Location",
+                schema: "app");
 
             migrationBuilder.DropTable(
-                name: "Vehicle");
+                name: "Vehicle",
+                schema: "app");
         }
     }
 }

@@ -1,7 +1,6 @@
-﻿using Garage.Core;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+﻿using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Garage.Infrastructure.Data.Converters;
+namespace Garage.Persistence.Converters;
 
 internal sealed class LocationIdValueConverter(ConverterMappingHints? mappingHints = null)
     : ValueConverter<LocationId, Guid>(id => id.Value, value => new LocationId(value), mappingHints)

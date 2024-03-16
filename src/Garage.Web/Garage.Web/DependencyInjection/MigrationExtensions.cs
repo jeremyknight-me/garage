@@ -1,4 +1,4 @@
-﻿using Garage.Infrastructure.Data;
+﻿using Garage.Persistence;
 using Garage.Persistence.Identity;
 using Microsoft.EntityFrameworkCore;
 

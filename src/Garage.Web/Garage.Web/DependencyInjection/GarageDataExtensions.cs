@@ -1,4 +1,4 @@
-﻿using Garage.Infrastructure.Data;
+﻿using Garage.Persistence;
 using Microsoft.EntityFrameworkCore;
 
 namespace Garage.Web.DependencyInjection;

@@ -1,7 +1,6 @@
-﻿using Garage.Core;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+﻿using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Garage.Infrastructure.Data.Converters;
+namespace Garage.Persistence.Converters;
 
 internal sealed class VehicleIdValueConverter(ConverterMappingHints? mappingHints = null)
     : ValueConverter<VehicleId, Guid>(id => id.Value, value => new VehicleId(value), mappingHints)

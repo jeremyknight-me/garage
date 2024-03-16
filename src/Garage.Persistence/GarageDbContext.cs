@@ -1,12 +1,12 @@
-﻿using Garage.Core;
-using Garage.Infrastructure.Data.Config;
-using Garage.Infrastructure.Data.Converters;
-using Microsoft.EntityFrameworkCore;
+﻿using Garage.Persistence.Config;
+using Garage.Persistence.Converters;
 
-namespace Garage.Infrastructure.Data;
+namespace Garage.Persistence;
 
 public sealed class GarageDbContext(DbContextOptions<GarageDbContext> options) : DbContext(options)
 {
+    private const string schema = "app";
+
     public DbSet<Core.Garage> Garages { get; set; }
     public DbSet<Location> Locations { get; set; }
     public DbSet<Maintenance> Maintenances { get; set; }
@@ -41,6 +41,8 @@ public sealed class GarageDbContext(DbContextOptions<GarageDbContext> options) :
         {
             throw new ArgumentNullException(nameof(type.Namespace));
         }
+
+        modelBuilder.HasDefaultSchema(schema);
 
         var assembly = type.Assembly;
         modelBuilder.ApplyConfigurationsFromAssembly(assembly, x =>

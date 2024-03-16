@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Garage.Infrastructure.Data.Config;
+namespace Garage.Persistence.Config;
 
 internal sealed class GarageConfig : IEntityTypeConfiguration<Core.Garage>
 {
