@@ -1,4 +1,4 @@
-using Garage.Web.Data;
+﻿using Garage.Persistence.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 

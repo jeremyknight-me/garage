@@ -1,5 +1,5 @@
-﻿using Garage.Web.Components.Account;
-using Garage.Web.Data;
+﻿using Garage.Persistence.Identity;
+using Garage.Web.Components.Account;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;

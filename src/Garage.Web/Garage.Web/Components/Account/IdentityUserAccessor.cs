@@ -1,7 +1,8 @@
-using Garage.Web.Data;
+﻿using Garage.Persistence.Identity;
 using Microsoft.AspNetCore.Identity;
 
 namespace Garage.Web.Components.Account;
+
 internal sealed class IdentityUserAccessor(UserManager<ApplicationUser> userManager, IdentityRedirectManager redirectManager)
 {
     public async Task<ApplicationUser> GetRequiredUserAsync(HttpContext context)

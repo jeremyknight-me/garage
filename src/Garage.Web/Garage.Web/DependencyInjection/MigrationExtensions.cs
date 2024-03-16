@@ -1,5 +1,5 @@
 ﻿using Garage.Infrastructure.Data;
-using Garage.Web.Data;
+using Garage.Persistence.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace Garage.Web.DependencyInjection;
