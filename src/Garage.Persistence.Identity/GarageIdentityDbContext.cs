@@ -6,11 +6,11 @@ namespace Garage.Persistence.Identity;
 public class GarageIdentityDbContext(DbContextOptions<GarageIdentityDbContext> options)
     : IdentityDbContext<ApplicationUser>(options)
 {
-    private const string schema = "identity";
+    public const string Schema = "identity";
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
-        _ = builder.HasDefaultSchema(schema);
+        _ = builder.HasDefaultSchema(Schema);
         base.OnModelCreating(builder);
     }
 }

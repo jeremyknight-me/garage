@@ -15,8 +15,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\Garage.Persistence.Identity\Garage.Persistence.Identity.csproj" />
-        <ProjectReference Include="..\..\Garage.Persistence\Garage.Persistence.csproj" />
+        <ProjectReference Include="..\..\Garage.Persistence.Identity.Postgres\Garage.Persistence.Identity.Postgres.csproj" />
+        <ProjectReference Include="..\..\Garage.Persistence.Postgres\Garage.Persistence.Postgres.csproj" />
         <ProjectReference Include="..\Garage.Web.Client\Garage.Web.Client.csproj" />
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.2" />
         <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.0.2" />

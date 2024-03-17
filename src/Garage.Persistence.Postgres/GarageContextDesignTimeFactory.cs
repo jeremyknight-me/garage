@@ -10,7 +10,7 @@ public sealed class GarageContextDesignTimeFactory : IDesignTimeDbContextFactory
         DbContextOptionsBuilder<GarageDbContext> builder = new();
         builder.UseNpgsql(
             connectionString: "Host=localhost;Database=Garage;Username=postgres;Password=test;",
-            options => options.MigrationsAssembly("Garage.Persistence.Postgres"));
+            options => options.MigrationsAssembly(StringLiterals.MigrationAssembly));
         return new GarageDbContext(builder.Options);
     }
 }

@@ -6,7 +6,7 @@ namespace Garage.Persistence;
 
 public sealed class GarageDbContext(DbContextOptions<GarageDbContext> options) : DbContext(options)
 {
-    private const string schema = "app";
+    public const string Schema = "app";
 
     public DbSet<Core.Garage> Garages { get; set; }
     public DbSet<Location> Locations { get; set; }
@@ -37,7 +37,7 @@ public sealed class GarageDbContext(DbContextOptions<GarageDbContext> options) :
             throw new ArgumentNullException(nameof(type.Namespace));
         }
 
-        modelBuilder.HasDefaultSchema(schema);
+        modelBuilder.HasDefaultSchema(Schema);
 
         var assembly = type.Assembly;
         modelBuilder.ApplyConfigurationsFromAssembly(assembly, x =>
