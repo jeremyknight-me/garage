@@ -5,14 +5,12 @@ VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Garage.Core", "Garage.Core\Garage.Core.csproj", "{2724CC31-D254-4070-A0CC-CE3DA5546DFF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Garage.Infrastructure", "Garage.Infrastructure\Garage.Infrastructure.csproj", "{31BC2FA4-537D-4465-9FA9-9920F7423B57}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8DCA49CA-7A52-4534-A070-C056FD62F418}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0-Solution Items", "0-Solution Items", "{8DCA49CA-7A52-4534-A070-C056FD62F418}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repository Items", "Repository Items", "{5EF38AF3-A80F-46C7-A664-26E471378F04}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0-Repository Items", "0-Repository Items", "{5EF38AF3-A80F-46C7-A664-26E471378F04}"
 	ProjectSection(SolutionItems) = preProject
 		..\CHANGELOG.md = ..\CHANGELOG.md
 		..\README.md = ..\README.md
@@ -24,6 +22,20 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Garage.Web.Client", "Garage
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{1596DAF6-B160-401A-96CE-10C2ABD3437D}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Garage.Persistence", "Garage.Persistence\Garage.Persistence.csproj", "{189EA4C3-6959-48DF-8142-B37D18449DC9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Garage.Persistence.Identity", "Garage.Persistence.Identity\Garage.Persistence.Identity.csproj", "{06E23EB6-1309-49B3-ADA1-5999722656C0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Garage.Persistence.Identity.Postgres", "Garage.Persistence.Identity.Postgres\Garage.Persistence.Identity.Postgres.csproj", "{B9367F3D-DB51-4793-9769-0CB39573C6D6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Persistence", "Persistence", "{21A0CEE8-C745-4705-A92D-58D89AF30A1C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Persistence.Identity", "Persistence.Identity", "{73E297C2-9874-43EB-B14A-E8B5C84BBDE5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Garage.Persistence.Postgres", "Garage.Persistence.Postgres\Garage.Persistence.Postgres.csproj", "{F5FE2703-5771-42A3-A37E-727FABA0B792}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{67C0A5FB-1C46-494B-96AE-CB629D4968E0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,10 +46,6 @@ Global
 		{2724CC31-D254-4070-A0CC-CE3DA5546DFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2724CC31-D254-4070-A0CC-CE3DA5546DFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2724CC31-D254-4070-A0CC-CE3DA5546DFF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{31BC2FA4-537D-4465-9FA9-9920F7423B57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{31BC2FA4-537D-4465-9FA9-9920F7423B57}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{31BC2FA4-537D-4465-9FA9-9920F7423B57}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{31BC2FA4-537D-4465-9FA9-9920F7423B57}.Release|Any CPU.Build.0 = Release|Any CPU
 		{639560F0-5410-476D-8656-B9AF17616C09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{639560F0-5410-476D-8656-B9AF17616C09}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{639560F0-5410-476D-8656-B9AF17616C09}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -50,9 +58,33 @@ Global
 		{1596DAF6-B160-401A-96CE-10C2ABD3437D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1596DAF6-B160-401A-96CE-10C2ABD3437D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1596DAF6-B160-401A-96CE-10C2ABD3437D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{189EA4C3-6959-48DF-8142-B37D18449DC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{189EA4C3-6959-48DF-8142-B37D18449DC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{189EA4C3-6959-48DF-8142-B37D18449DC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{189EA4C3-6959-48DF-8142-B37D18449DC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06E23EB6-1309-49B3-ADA1-5999722656C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06E23EB6-1309-49B3-ADA1-5999722656C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06E23EB6-1309-49B3-ADA1-5999722656C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06E23EB6-1309-49B3-ADA1-5999722656C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9367F3D-DB51-4793-9769-0CB39573C6D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9367F3D-DB51-4793-9769-0CB39573C6D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9367F3D-DB51-4793-9769-0CB39573C6D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9367F3D-DB51-4793-9769-0CB39573C6D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5FE2703-5771-42A3-A37E-727FABA0B792}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5FE2703-5771-42A3-A37E-727FABA0B792}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5FE2703-5771-42A3-A37E-727FABA0B792}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5FE2703-5771-42A3-A37E-727FABA0B792}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{639560F0-5410-476D-8656-B9AF17616C09} = {67C0A5FB-1C46-494B-96AE-CB629D4968E0}
+		{1E48820E-31F9-45EA-A371-C7F0D0EFA325} = {67C0A5FB-1C46-494B-96AE-CB629D4968E0}
+		{189EA4C3-6959-48DF-8142-B37D18449DC9} = {21A0CEE8-C745-4705-A92D-58D89AF30A1C}
+		{06E23EB6-1309-49B3-ADA1-5999722656C0} = {73E297C2-9874-43EB-B14A-E8B5C84BBDE5}
+		{B9367F3D-DB51-4793-9769-0CB39573C6D6} = {73E297C2-9874-43EB-B14A-E8B5C84BBDE5}
+		{F5FE2703-5771-42A3-A37E-727FABA0B792} = {21A0CEE8-C745-4705-A92D-58D89AF30A1C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {633966CE-7465-43B8-94D0-CA6B2155F568}

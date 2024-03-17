@@ -1,5 +1,6 @@
-﻿using Garage.Web.Components.Account;
-using Garage.Web.Data;
+﻿using Garage.Persistence.Identity;
+using Garage.Persistence.Identity.Postgres.Extensions;
+using Garage.Web.Components.Account;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -23,10 +24,10 @@ internal static class IdentityExtensions
             })
             .AddIdentityCookies();
 
-        var connectionString = configuration.GetConnectionString(Constants.ConnectionStrings.Garage_Identity)
-            ?? throw new InvalidOperationException($"Connection string '{Constants.ConnectionStrings.Garage_Identity}' not found.");
+        var connectionString = configuration.GetConnectionString(Constants.ConnectionStrings.Garage_App)
+            ?? throw new InvalidOperationException($"Connection string '{Constants.ConnectionStrings.Garage_App}' not found.");
+        services.AddGarageIdentityDbContext(connectionString);
 
-        services.AddDbContext<GarageIdentityDbContext>(options => options.UseNpgsql(connectionString));
         services.AddDatabaseDeveloperPageExceptionFilter();
 
         services.AddIdentityCore<ApplicationUser>(options =>
