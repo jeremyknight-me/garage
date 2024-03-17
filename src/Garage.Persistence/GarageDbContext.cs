@@ -1,4 +1,6 @@
-﻿using Garage.Persistence.Config;
+﻿using Garage.Core.Entities;
+using Garage.Core.ValueObjects;
+using Garage.Persistence.Config;
 using Garage.Persistence.Converters;
 using Garage.Persistence.Interceptors;
 
@@ -8,7 +10,7 @@ public sealed class GarageDbContext(DbContextOptions<GarageDbContext> options) :
 {
     public const string Schema = "app";
 
-    public DbSet<Core.Garage> Garages { get; set; }
+    public DbSet<Core.Entities.Garage> Garages { get; set; }
     public DbSet<Location> Locations { get; set; }
     public DbSet<Maintenance> Maintenances { get; set; }
     public DbSet<Vehicle> Vehicles { get; set; }

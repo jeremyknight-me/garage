@@ -30,10 +30,10 @@ internal class PersistentAuthenticationStateProvider : AuthenticationStateProvid
             new Claim(ClaimTypes.Name, userInfo.Email),
             new Claim(ClaimTypes.Email, userInfo.Email) ];
 
-        authenticationStateTask = Task.FromResult(
+        this.authenticationStateTask = Task.FromResult(
             new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity(claims,
                 authenticationType: nameof(PersistentAuthenticationStateProvider)))));
     }
 
-    public override Task<AuthenticationState> GetAuthenticationStateAsync() => authenticationStateTask;
+    public override Task<AuthenticationState> GetAuthenticationStateAsync() => this.authenticationStateTask;
 }

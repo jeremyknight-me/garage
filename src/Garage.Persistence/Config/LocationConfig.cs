@@ -1,5 +1,4 @@
-﻿using Garage.Core;
-using Microsoft.EntityFrameworkCore;
+﻿using Garage.Core.Entities;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Garage.Persistence.Config;

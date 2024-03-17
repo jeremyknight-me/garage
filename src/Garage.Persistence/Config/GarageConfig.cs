@@ -1,11 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Garage.Persistence.Config;
 
-internal sealed class GarageConfig : IEntityTypeConfiguration<Core.Garage>
+internal sealed class GarageConfig : IEntityTypeConfiguration<Core.Entities.Garage>
 {
-    public void Configure(EntityTypeBuilder<Core.Garage> builder)
+    public void Configure(EntityTypeBuilder<Core.Entities.Garage> builder)
     {
         builder.ToTable("Garage");
         builder.HasKey(x => x.Id);

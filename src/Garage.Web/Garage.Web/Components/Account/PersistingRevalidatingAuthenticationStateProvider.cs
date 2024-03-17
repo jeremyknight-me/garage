@@ -30,12 +30,12 @@ internal sealed class PersistingRevalidatingAuthenticationStateProvider : Revali
         IOptions<IdentityOptions> optionsAccessor)
         : base(loggerFactory)
     {
-        scopeFactory = serviceScopeFactory;
-        state = persistentComponentState;
-        options = optionsAccessor.Value;
+        this.scopeFactory = serviceScopeFactory;
+        this.state = persistentComponentState;
+        this.options = optionsAccessor.Value;
 
-        AuthenticationStateChanged += OnAuthenticationStateChanged;
-        subscription = state.RegisterOnPersisting(OnPersistingAsync, RenderMode.InteractiveWebAssembly);
+        AuthenticationStateChanged += this.OnAuthenticationStateChanged;
+        this.subscription = this.state.RegisterOnPersisting(this.OnPersistingAsync, RenderMode.InteractiveWebAssembly);
     }
 
     protected override TimeSpan RevalidationInterval => TimeSpan.FromMinutes(30);
@@ -44,9 +44,9 @@ internal sealed class PersistingRevalidatingAuthenticationStateProvider : Revali
         AuthenticationState authenticationState, CancellationToken cancellationToken)
     {
         // Get the user manager from a new scope to ensure it fetches fresh data
-        await using var scope = scopeFactory.CreateAsyncScope();
+        await using var scope = this.scopeFactory.CreateAsyncScope();
         var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
-        return await ValidateSecurityStampAsync(userManager, authenticationState.User);
+        return await this.ValidateSecurityStampAsync(userManager, authenticationState.User);
     }
 
     private async Task<bool> ValidateSecurityStampAsync(UserManager<ApplicationUser> userManager, ClaimsPrincipal principal)
@@ -62,7 +62,7 @@ internal sealed class PersistingRevalidatingAuthenticationStateProvider : Revali
         }
         else
         {
-            var principalStamp = principal.FindFirstValue(options.ClaimsIdentity.SecurityStampClaimType);
+            var principalStamp = principal.FindFirstValue(this.options.ClaimsIdentity.SecurityStampClaimType);
             var userStamp = await userManager.GetSecurityStampAsync(user);
             return principalStamp == userStamp;
         }
@@ -70,27 +70,27 @@ internal sealed class PersistingRevalidatingAuthenticationStateProvider : Revali
 
     private void OnAuthenticationStateChanged(Task<AuthenticationState> task)
     {
-        authenticationStateTask = task;
+        this.authenticationStateTask = task;
     }
 
     private async Task OnPersistingAsync()
     {
-        if (authenticationStateTask is null)
+        if (this.authenticationStateTask is null)
         {
             throw new UnreachableException($"Authentication state not set in {nameof(OnPersistingAsync)}().");
         }
 
-        var authenticationState = await authenticationStateTask;
+        var authenticationState = await this.authenticationStateTask;
         var principal = authenticationState.User;
 
         if (principal.Identity?.IsAuthenticated == true)
         {
-            var userId = principal.FindFirst(options.ClaimsIdentity.UserIdClaimType)?.Value;
-            var email = principal.FindFirst(options.ClaimsIdentity.EmailClaimType)?.Value;
+            var userId = principal.FindFirst(this.options.ClaimsIdentity.UserIdClaimType)?.Value;
+            var email = principal.FindFirst(this.options.ClaimsIdentity.EmailClaimType)?.Value;
 
             if (userId != null && email != null)
             {
-                state.PersistAsJson(nameof(UserInfo), new UserInfo
+                this.state.PersistAsJson(nameof(UserInfo), new UserInfo
                 {
                     UserId = userId,
                     Email = email,
@@ -101,8 +101,8 @@ internal sealed class PersistingRevalidatingAuthenticationStateProvider : Revali
 
     protected override void Dispose(bool disposing)
     {
-        subscription.Dispose();
-        AuthenticationStateChanged -= OnAuthenticationStateChanged;
+        this.subscription.Dispose();
+        AuthenticationStateChanged -= this.OnAuthenticationStateChanged;
         base.Dispose(disposing);
     }
 }

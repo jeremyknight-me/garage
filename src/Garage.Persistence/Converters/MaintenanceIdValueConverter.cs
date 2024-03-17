@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+﻿using Garage.Core.ValueObjects;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Garage.Persistence.Converters;
 
