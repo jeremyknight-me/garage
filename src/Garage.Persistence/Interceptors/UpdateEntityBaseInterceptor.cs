@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Diagnostics;
+﻿using Garage.Core.Entities;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace Garage.Persistence.Interceptors;
 

@@ -1,10 +1,10 @@
-﻿namespace Garage.Core;
+﻿namespace Garage.Core.Entities;
 
 public abstract class EntityBase<TId> : EntityBase
     where TId : struct, IEquatable<TId>
 {
     public TId Id { get; set; }
-    
+
 }
 
 public abstract class EntityBase

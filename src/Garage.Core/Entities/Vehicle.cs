@@ -1,4 +1,6 @@
-﻿namespace Garage.Core;
+﻿using Garage.Core.ValueObjects;
+
+namespace Garage.Core.Entities;
 
 public sealed class Vehicle : EntityBase<VehicleId>
 {
