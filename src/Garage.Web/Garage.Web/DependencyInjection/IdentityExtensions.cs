@@ -24,8 +24,8 @@ internal static class IdentityExtensions
             })
             .AddIdentityCookies();
 
-        var connectionString = configuration.GetConnectionString(Constants.ConnectionStrings.Garage_Identity)
-            ?? throw new InvalidOperationException($"Connection string '{Constants.ConnectionStrings.Garage_Identity}' not found.");
+        var connectionString = configuration.GetConnectionString(Constants.ConnectionStrings.Garage_App)
+            ?? throw new InvalidOperationException($"Connection string '{Constants.ConnectionStrings.Garage_App}' not found.");
         services.AddGarageIdentityDbContext(connectionString);
 
         services.AddDatabaseDeveloperPageExceptionFilter();
