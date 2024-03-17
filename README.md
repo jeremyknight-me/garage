@@ -4,18 +4,18 @@ This is designed to be a self-hosted car maintenance tracker which can be shared
 
 ### Security
 
-The current iteration has no external auth. If you're going to allow outside access, I highly recommend a technology like Cloudflare Tunnels. It will allow the setup access policies (access by email, domain, etc.). 
+If you're going to allow outside/exteranl access, I highly recommend a technology like Cloudflare Tunnels or Ubiquiti Teleport. These services will give more control over access to your self-hosted system. 
 
 ### Entity Framework Commands
 
-To run migrations for `GarageDbContext` navigate to `src/Garage.Infrastructure` and run:
+To run migrations for `GarageDbContext` navigate to `src/Garage.Persistence.Postgres` and run the following where `Initial` is the migration name:
 
 ```powershell
-dotnet ef migrations add Initial -o Data/Migrations/Postgres -c GarageDbContext
+dotnet ef migrations add Initial
 ```
 
-To run migrations for `GarageIdentityDbContext` navigate to `src/Garage.Web/Garage.Web` and run `dotnet ef migrations add Initial -o Data/Migrations/Postgres`.
+To run migrations for `GarageIdentityDbContext` navigate to `src/Garage.Persistence.Identity.Postgres` and run the following where `Initial` is the migration name:
 
 ```powershell
-dotnet ef migrations add Initial -o Data/Migrations/Postgres -c GarageIdentityDbContext
+dotnet ef migrations add Initial
 ```
