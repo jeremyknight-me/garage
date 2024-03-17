@@ -15,6 +15,7 @@ services:
       - "8081:8081"
     depends_on:
       - garage-db
+      - garage-seq 
     links: 
       - garage-db
       
@@ -40,3 +41,13 @@ services:
       - 15432:80
     depends_on:
       - garage-db
+
+  garage-seq:
+    image: datalust/seq:latest
+    container_name: garage-seq
+    environment:
+      - ACCEPT_EULA=Y
+      - SEQ_FIRSTRUN_ADMINPASSWORDHASH=QME91ifplvCXi0wkpaobjqEldl8NhQlOXJKSf5ttDfmHt/gHD1hLma/1hl51WL/0q5/4OhESZ0EEy1ecYRwv79Ciu8sQvNkpZ1ms78/E9q5f  #changeme
+    ports:
+      - 8090:80
+      - 5341:5341
