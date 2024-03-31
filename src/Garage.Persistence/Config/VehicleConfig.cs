@@ -9,6 +9,7 @@ internal sealed class VehicleConfig : IEntityTypeConfiguration<Vehicle>
     {
         builder.ToTable("Vehicle");
         builder.HasKey(x => x.Id);
+        builder.Property(x => x.Id).ValueGeneratedOnAdd();
 
         builder.Property(x => x.Make).HasMaxLength(50).IsRequired();
         builder.Property(x => x.Model).HasMaxLength(50).IsRequired();

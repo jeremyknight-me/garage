@@ -23,6 +23,8 @@ services:
     image: postgres:latest
     container_name: garage-db
     restart: unless-stopped
+    ports:
+      - "5432:5432"
     expose:
       - "5432"
     environment:

@@ -8,6 +8,7 @@ internal sealed class GarageConfig : IEntityTypeConfiguration<Core.Entities.Gara
     {
         builder.ToTable("Garage");
         builder.HasKey(x => x.Id);
+        builder.Property(x => x.Id).ValueGeneratedOnAdd();
 
         builder.Property(x => x.Name).HasMaxLength(250).IsRequired();
 
