@@ -9,6 +9,7 @@ internal sealed class LocationConfig : IEntityTypeConfiguration<Location>
     {
         builder.ToTable("Location");
         builder.HasKey(x => x.Id);
+        builder.Property(x => x.Id).ValueGeneratedOnAdd();
 
         builder.Property(x => x.Name).HasMaxLength(250).IsRequired();
     }

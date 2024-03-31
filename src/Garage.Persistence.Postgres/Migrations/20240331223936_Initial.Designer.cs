@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Garage.Persistence.Postgres.Migrations
 {
     [DbContext(typeof(GarageDbContext))]
-    [Migration("20240316225819_Initial")]
+    [Migration("20240331223936_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -21,15 +21,18 @@ namespace Garage.Persistence.Postgres.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasDefaultSchema("app")
-                .HasAnnotation("ProductVersion", "8.0.2")
+                .HasAnnotation("ProductVersion", "8.0.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("Garage.Core.Garage", b =>
+            modelBuilder.Entity("Garage.Core.Entities.Garage", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uuid");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<DateTimeOffset>("DateCreated")
                         .HasColumnType("timestamp with time zone");
@@ -48,10 +51,13 @@ namespace Garage.Persistence.Postgres.Migrations
                     b.ToTable("Garage", "app");
                 });
 
-            modelBuilder.Entity("Garage.Core.Location", b =>
+            modelBuilder.Entity("Garage.Core.Entities.Location", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uuid");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<DateTimeOffset>("DateCreated")
                         .HasColumnType("timestamp with time zone");
@@ -70,10 +76,13 @@ namespace Garage.Persistence.Postgres.Migrations
                     b.ToTable("Location", "app");
                 });
 
-            modelBuilder.Entity("Garage.Core.Maintenance", b =>
+            modelBuilder.Entity("Garage.Core.Entities.Maintenance", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uuid");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<decimal?>("Cost")
                         .HasPrecision(9, 2)
@@ -88,8 +97,8 @@ namespace Garage.Persistence.Postgres.Migrations
                     b.Property<DateTimeOffset>("DateModified")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<Guid>("LocationId")
-                        .HasColumnType("uuid");
+                    b.Property<int>("LocationId")
+                        .HasColumnType("integer");
 
                     b.Property<int?>("Mileage")
                         .HasColumnType("integer");
@@ -98,8 +107,8 @@ namespace Garage.Persistence.Postgres.Migrations
                         .IsUnicode(true)
                         .HasColumnType("text");
 
-                    b.Property<Guid>("VehicleId")
-                        .HasColumnType("uuid");
+                    b.Property<int>("VehicleId")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -110,10 +119,13 @@ namespace Garage.Persistence.Postgres.Migrations
                     b.ToTable("Maintenance", "app");
                 });
 
-            modelBuilder.Entity("Garage.Core.Vehicle", b =>
+            modelBuilder.Entity("Garage.Core.Entities.Vehicle", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uuid");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<DateTimeOffset>("DateCreated")
                         .HasColumnType("timestamp with time zone");
@@ -143,11 +155,11 @@ namespace Garage.Persistence.Postgres.Migrations
 
             modelBuilder.Entity("GarageVehicle", b =>
                 {
-                    b.Property<Guid>("GaragesId")
-                        .HasColumnType("uuid");
+                    b.Property<int>("GaragesId")
+                        .HasColumnType("integer");
 
-                    b.Property<Guid>("VehiclesId")
-                        .HasColumnType("uuid");
+                    b.Property<int>("VehiclesId")
+                        .HasColumnType("integer");
 
                     b.HasKey("GaragesId", "VehiclesId");
 
@@ -156,15 +168,15 @@ namespace Garage.Persistence.Postgres.Migrations
                     b.ToTable("GarageVehicle", "app");
                 });
 
-            modelBuilder.Entity("Garage.Core.Maintenance", b =>
+            modelBuilder.Entity("Garage.Core.Entities.Maintenance", b =>
                 {
-                    b.HasOne("Garage.Core.Location", "Location")
+                    b.HasOne("Garage.Core.Entities.Location", "Location")
                         .WithMany()
                         .HasForeignKey("LocationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Garage.Core.Vehicle", "Vehicle")
+                    b.HasOne("Garage.Core.Entities.Vehicle", "Vehicle")
                         .WithMany("Maintenances")
                         .HasForeignKey("VehicleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -177,20 +189,20 @@ namespace Garage.Persistence.Postgres.Migrations
 
             modelBuilder.Entity("GarageVehicle", b =>
                 {
-                    b.HasOne("Garage.Core.Garage", null)
+                    b.HasOne("Garage.Core.Entities.Garage", null)
                         .WithMany()
                         .HasForeignKey("GaragesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Garage.Core.Vehicle", null)
+                    b.HasOne("Garage.Core.Entities.Vehicle", null)
                         .WithMany()
                         .HasForeignKey("VehiclesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Garage.Core.Vehicle", b =>
+            modelBuilder.Entity("Garage.Core.Entities.Vehicle", b =>
                 {
                     b.Navigation("Maintenances");
                 });
