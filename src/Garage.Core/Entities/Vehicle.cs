@@ -11,13 +11,6 @@ public sealed class Vehicle : EntityBase<VehicleId>
     {
     }
 
-    private Vehicle(string make, string model, short year)
-    {
-        this.SetMake(make);
-        this.SetModel(model);
-        this.SetYear(year);
-    }
-
     public string Make { get; private set; } = null!;
     public string Model { get; private set; } = null!;
     public short Year { get; private set; }
@@ -43,7 +36,13 @@ public sealed class Vehicle : EntityBase<VehicleId>
     }
 
     public static Vehicle Create(string make, string model, short year)
-        => new(make, model, year);
+    {
+        var vehicle = new Vehicle();
+        vehicle.SetMake(make);
+        vehicle.SetModel(model);
+        vehicle.SetYear(year);
+        return vehicle;
+    }
 
     public void SetMake(string make)
     {

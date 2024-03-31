@@ -10,11 +10,6 @@ public sealed class Garage : EntityBase<GarageId>
     {
     }
 
-    private Garage(string name)
-    {
-        this.SetName(name);
-    }
-
     public string Name { get; private set; } = null!;
 
     public IReadOnlyList<Vehicle> Vehicles
@@ -28,7 +23,11 @@ public sealed class Garage : EntityBase<GarageId>
     }
 
     public static Garage Create(string name)
-        => new(name);
+    {
+        var garage = new Garage();
+        garage.SetName(name);
+        return garage;
+    }
 
     public void SetName(string name)
     {

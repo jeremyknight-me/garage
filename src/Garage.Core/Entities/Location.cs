@@ -8,15 +8,14 @@ public sealed class Location : EntityBase<LocationId>
     {
     }
 
-    private Location(string name)
-    {
-        this.SetName(name);
-    }
-
     public string Name { get; private set; } = null!;
 
     public static Location Create(string name)
-        => new(name);
+    {
+        var location = new Location();
+        location.SetName(name);
+        return location;
+    }
 
     public void SetName(string name)
     {

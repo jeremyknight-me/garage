@@ -8,16 +8,6 @@ public sealed class Maintenance : EntityBase<MaintenanceId>
     {
     }
 
-    private Maintenance(VehicleId vehicle, DateOnly date, LocationId locationId, int? mileage, decimal? cost, string? notes)
-    {
-        this.VehicleId = vehicle;
-        this.SetDate(date);
-        this.SetLocation(locationId);
-        this.SetMileage(mileage);
-        this.SetCost(cost);
-        this.SetNotes(notes);
-    }
-
     public decimal? Cost { get; private set; }
     public DateOnly Date { get; private set; }
     public LocationId LocationId { get; private set; }
@@ -28,7 +18,18 @@ public sealed class Maintenance : EntityBase<MaintenanceId>
     public Vehicle Vehicle { get; private init; } = null!;
 
     public static Maintenance Create(VehicleId vehicle, DateOnly date, LocationId locationId, int? mileage = null, decimal? cost = null, string? notes = null)
-        => new(vehicle, date, locationId, mileage, cost, notes);
+    {
+        var maintenance = new Maintenance
+        {
+            VehicleId = vehicle
+        };
+        maintenance.SetDate(date);
+        maintenance.SetLocation(locationId);
+        maintenance.SetMileage(mileage);
+        maintenance.SetCost(cost);
+        maintenance.SetNotes(notes);
+        return maintenance;
+    }
 
     public void SetCost(decimal? cost)
     {
