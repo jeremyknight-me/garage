@@ -1,0 +1,7 @@
+@url = https://localhost:8081
+
+###
+
+GET {{url}}/api/garages/3
+
+###

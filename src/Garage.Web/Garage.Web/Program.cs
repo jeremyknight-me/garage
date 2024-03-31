@@ -1,5 +1,7 @@
 ﻿using Garage.Web.Components;
 using Garage.Web.DependencyInjection;
+using Garage.Web.Features.Garages;
+using Garage.Web.Features.Vehicles;
 using Serilog;
 using Serilog.Exceptions;
 using Serilog.Exceptions.Core;
@@ -63,6 +65,10 @@ public class Program
             app.UseAntiforgery();
 
             app.UseSerilogRequestLogging();
+
+            app
+                .UseGarageEndpoints()
+                .UseVehicleEndpoints();
 
             app.MapRazorComponents<App>()
                 .AddInteractiveServerRenderMode()
