@@ -1,9 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
     <PropertyGroup>
-        <TargetFramework>net8.0</TargetFramework>
-        <Nullable>enable</Nullable>
-        <ImplicitUsings>enable</ImplicitUsings>
         <UserSecretsId>aspnet-Garage.Web-e4890c0b-3afe-4a39-a790-ca5bb727bed3</UserSecretsId>
         <RuntimeIdentifiers>linux-x64</RuntimeIdentifiers>
         
@@ -15,20 +12,27 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="MediatR" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" />
+        <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" />
+        <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" />
+        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" />
+        <PackageReference Include="Serilog.AspNetCore" />
+        <PackageReference Include="Serilog.Exceptions" />
+        <PackageReference Include="Serilog.Exceptions.EntityFrameworkCore" />
+        <PackageReference Include="Serilog.Exceptions.MsSqlServer" />
+        <PackageReference Include="Serilog.Sinks.Seq" />
+    </ItemGroup>
+
+    <ItemGroup>
         <ProjectReference Include="..\..\Garage.Persistence.Identity.Postgres\Garage.Persistence.Identity.Postgres.csproj" />
         <ProjectReference Include="..\..\Garage.Persistence.Postgres\Garage.Persistence.Postgres.csproj" />
         <ProjectReference Include="..\Garage.Web.Client\Garage.Web.Client.csproj" />
-        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.2" />
-        <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.0.2" />
-        <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.2" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.2" />
-        <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.6" />
-        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.2" />
-        <PackageReference Include="Serilog.AspNetCore" Version="8.0.1" />
-        <PackageReference Include="Serilog.Exceptions" Version="8.4.0" />
-        <PackageReference Include="Serilog.Exceptions.EntityFrameworkCore" Version="8.4.0" />
-        <PackageReference Include="Serilog.Exceptions.MsSqlServer" Version="8.4.0" />
-        <PackageReference Include="Serilog.Sinks.Seq" Version="7.0.0" />
     </ItemGroup>
 
     <ItemGroup>
